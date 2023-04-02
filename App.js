@@ -1,8 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { useRef } from 'react';
+import { initReactI18next, useTranslation } from 'react-i18next';
+import i18n from 'i18next';
+
+i18n.use(initReactI18next).init({
+  compatibilityJSON: 'v3',
+  resources: {
+    en: {
+      translation: {
+        'Welcome to React': 'Welcome to React and react-i18next',
+      },
+    },
+  },
+  lng: 'en',
+  fallbackLng: 'en',
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 export default function App() {
+  const { t } = useTranslation();
   let ref = useRef(0);
 
   function handleClick() {
@@ -12,6 +31,7 @@ export default function App() {
   return (
     <View style={style.container}>
       <Button title="Click me!" onPress={handleClick} />
+      <Text>{t('Welcome to React')}</Text>
     </View>
   );
 }
