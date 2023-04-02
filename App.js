@@ -1,13 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { useRef } from 'react';
 
 export default function App() {
+  let ref = useRef(0);
+
+  function handleClick() {
+    ref.current = ref.current + 1;
+    alert('You clicked' + ref.current + ' times!');
+  }
   return (
     <View style={style.container}>
-      <Text style={style.red}>just red</Text>
-      <Text style={style.bigBlue}>just bigBlue</Text>
-      <Text style={[style.bigBlue, style.red]}>bigBlue, then red</Text>
-      <Text style={[style.red, style.bigBlue]}>red, then bigBlue</Text>
+      <Button title="Click me!" onPress={handleClick} />
     </View>
   );
 }
